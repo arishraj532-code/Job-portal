@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import JobCard from "../components/Jobcard.jsx";
+import JobCard from "../components/JobCard.jsx";
 
 function Home({ onViewJob }) {
   const [searchText, setSearchText] = useState("");
