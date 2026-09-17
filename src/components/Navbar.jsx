@@ -5,6 +5,7 @@ function Navbar({
   onLogin,
   onRegister,
   onAbout,
+  onContact,
   onMyApplications,
   user,
   onLogout
@@ -52,6 +53,16 @@ function Navbar({
           }}
         >
           About
+        </a>
+
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            onContact();
+          }}
+        >
+          Contact Us
         </a>
 
         {user ? (

@@ -3,6 +3,7 @@ import { useState } from "react";
 function Login({ onRegister, onLoginSuccess }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -12,6 +13,8 @@ function Login({ onRegister, onLoginSuccess }) {
             return;
         }
 
+        setLoading(true);
+
         try {
             const response = await fetch("http://127.0.0.1:5000/login", {
                 method: "POST",
@@ -19,7 +22,7 @@ function Login({ onRegister, onLoginSuccess }) {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    email: email,
+                    email: email.trim(),
                     password: password,
                 }),
             });
@@ -27,14 +30,20 @@ function Login({ onRegister, onLoginSuccess }) {
             const data = await response.json();
 
             if (response.ok) {
-                onLoginSuccess(data);
                 alert(`Welcome ${data.full_name}!`);
+
+                // Send login data back to App.jsx
+                if (onLoginSuccess) {
+                    onLoginSuccess(data);
+                }
             } else {
-                alert(data.message);
+                alert(data.message || "Invalid email or password");
             }
         } catch (error) {
+            console.error("Login error:", error);
             alert("Backend connection failed");
-            console.log(error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -63,14 +72,13 @@ function Login({ onRegister, onLoginSuccess }) {
                     required
                 />
 
-                <button type="submit">
-                    Login
+                <button type="submit" disabled={loading}>
+                    {loading ? "Logging in..." : "Login"}
                 </button>
             </form>
 
             <p>
                 Don't have an account?{" "}
-
                 <button
                     type="button"
                     onClick={onRegister}

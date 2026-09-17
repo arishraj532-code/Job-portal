@@ -6,244 +6,183 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Jobs from "./pages/Jobs";
 import Companies from "./pages/Companies";
-import JobDetails from "./pages/JobDetails";
-import Application from "./pages/Application";
+import About from "./pages/About";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import About from "./pages/About";
+import Application from "./pages/Application";
+import JobDetails from "./pages/JobDetails";
 import MyApplications from "./pages/MyApplications";
-
+import Contact from "./pages/Contact";
 
 function App() {
-
   const [selectedJob, setSelectedJob] = useState(null);
+  const [selectedCompany, setSelectedCompany] = useState(null);
 
-  const [showApplication, setShowApplication] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+
   const [showJobs, setShowJobs] = useState(false);
   const [showCompanies, setShowCompanies] = useState(false);
+  const [showApplication, setShowApplication] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
-  const [showMyApplications, setShowMyApplications] = useState(false);
-
-  const [selectedCompany, setSelectedCompany] = useState("");
-
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
-
-  const [loggedInUser, setLoggedInUser] = useState(null);
-
-
-  // Smooth scroll to top
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  };
-
+  const [showMyApplications, setShowMyApplications] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   const handleHome = () => {
-
-    setSelectedJob(null);
-    setShowApplication(false);
     setShowJobs(false);
     setShowCompanies(false);
+    setShowApplication(false);
     setShowAbout(false);
-    setShowMyApplications(false);
     setShowLogin(false);
     setShowRegister(false);
-    setSelectedCompany("");
+    setShowMyApplications(false);
+    setShowContact(false);
 
-    scrollToTop();
+    setSelectedJob(null);
+    setSelectedCompany(null);
   };
-
 
   const handleJobs = () => {
-
-    setSelectedJob(null);
-    setSelectedCompany("");
-    setShowApplication(false);
     setShowJobs(true);
     setShowCompanies(false);
+    setShowApplication(false);
     setShowAbout(false);
-    setShowMyApplications(false);
     setShowLogin(false);
     setShowRegister(false);
+    setShowMyApplications(false);
+    setShowContact(false);
 
-    scrollToTop();
+    setSelectedJob(null);
+    setSelectedCompany(null);
   };
-
 
   const handleCompanies = () => {
-
-    setSelectedJob(null);
-    setShowApplication(false);
-    setShowJobs(false);
     setShowCompanies(true);
+    setShowJobs(false);
+    setShowApplication(false);
     setShowAbout(false);
-    setShowMyApplications(false);
     setShowLogin(false);
     setShowRegister(false);
+    setShowMyApplications(false);
+    setShowContact(false);
 
-    scrollToTop();
+    setSelectedJob(null);
+    setSelectedCompany(null);
   };
-
 
   const handleAbout = () => {
-
-    setSelectedJob(null);
-    setShowApplication(false);
-    setShowJobs(false);
-    setShowCompanies(false);
     setShowAbout(true);
-    setShowMyApplications(false);
+    setShowJobs(false);
+    setShowCompanies(false);
+    setShowApplication(false);
     setShowLogin(false);
     setShowRegister(false);
-
-    scrollToTop();
-  };
-
-
-  const handleMyApplications = () => {
-
-    if (!loggedInUser) {
-      alert("Please login to view your applications");
-      setShowLogin(true);
-      setShowRegister(false);
-
-      scrollToTop();
-
-      return;
-    }
+    setShowMyApplications(false);
+    setShowContact(false);
 
     setSelectedJob(null);
-    setShowApplication(false);
-    setShowJobs(false);
-    setShowCompanies(false);
-    setShowAbout(false);
-    setShowMyApplications(true);
-    setShowLogin(false);
-    setShowRegister(false);
-    setSelectedCompany("");
-
-    scrollToTop();
+    setSelectedCompany(null);
   };
-
-
-  const handleViewAppliedJob = (job) => {
-
-    setSelectedJob(job);
-    setShowMyApplications(false);
-    setShowApplication(false);
-    setShowJobs(false);
-    setShowCompanies(false);
-    setShowAbout(false);
-    setShowLogin(false);
-    setShowRegister(false);
-
-    scrollToTop();
-  };
-
-
-  const handleViewCompanyJobs = (companyName) => {
-
-    setSelectedCompany(companyName);
-    setShowCompanies(false);
-    setShowJobs(true);
-    setShowAbout(false);
-    setShowMyApplications(false);
-    setShowLogin(false);
-    setShowRegister(false);
-
-    scrollToTop();
-  };
-
-
-  const handleBackToCompanies = () => {
-
-    setShowJobs(false);
-    setShowCompanies(true);
-    setShowMyApplications(false);
-
-    scrollToTop();
-  };
-
-
-  const handleApply = () => {
-
-    if (!loggedInUser) {
-
-      alert("Please login to apply for a job");
-
-      setShowLogin(true);
-      setShowApplication(false);
-
-      scrollToTop();
-
-      return;
-    }
-
-    setShowApplication(true);
-    setShowMyApplications(false);
-
-    scrollToTop();
-  };
-
 
   const handleLogin = () => {
-
     setShowLogin(true);
     setShowRegister(false);
-    setShowAbout(false);
-    setShowMyApplications(false);
-    setSelectedJob(null);
-    setShowApplication(false);
     setShowJobs(false);
     setShowCompanies(false);
+    setShowApplication(false);
+    setShowAbout(false);
+    setShowMyApplications(false);
+    setShowContact(false);
 
-    scrollToTop();
+    setSelectedJob(null);
+    setSelectedCompany(null);
   };
-
 
   const handleRegister = () => {
-
     setShowRegister(true);
     setShowLogin(false);
-    setShowAbout(false);
-    setShowMyApplications(false);
-    setSelectedJob(null);
-    setShowApplication(false);
     setShowJobs(false);
     setShowCompanies(false);
+    setShowApplication(false);
+    setShowAbout(false);
+    setShowMyApplications(false);
+    setShowContact(false);
 
-    scrollToTop();
+    setSelectedJob(null);
+    setSelectedCompany(null);
   };
 
+  const handleContact = () => {
+    setShowContact(true);
+    setShowJobs(false);
+    setShowCompanies(false);
+    setShowApplication(false);
+    setShowAbout(false);
+    setShowLogin(false);
+    setShowRegister(false);
+    setShowMyApplications(false);
 
-  const handleLoginSuccess = (user) => {
+    setSelectedJob(null);
+    setSelectedCompany(null);
+  };
 
-    setLoggedInUser(user);
+  // LOGIN SUCCESS
+  const handleLoginSuccess = (data) => {
+    setCurrentUser(data);
 
     setShowLogin(false);
     setShowRegister(false);
+    setShowJobs(false);
+    setShowCompanies(false);
+    setShowApplication(false);
+    setShowAbout(false);
+    setShowMyApplications(false);
+    setShowContact(false);
 
-    scrollToTop();
+    setSelectedJob(null);
+    setSelectedCompany(null);
   };
 
+  const handleViewJob = (job) => {
+    setSelectedJob(job);
 
-  const handleLogout = () => {
-
-    setLoggedInUser(null);
-    setShowMyApplications(false);
+    setShowJobs(false);
+    setShowCompanies(false);
     setShowApplication(false);
-    setSelectedJob(null);
+    setShowAbout(false);
+    setShowLogin(false);
+    setShowRegister(false);
+    setShowMyApplications(false);
+    setShowContact(false);
+  };
+
+  const handleApply = () => {
+    setShowApplication(true);
+
     setShowJobs(false);
     setShowCompanies(false);
     setShowAbout(false);
-    setSelectedCompany("");
-
-    scrollToTop();
+    setShowLogin(false);
+    setShowRegister(false);
+    setShowMyApplications(false);
+    setShowContact(false);
   };
 
+  const handleViewCompanyJobs = (company) => {
+    setSelectedCompany(company);
+
+    setShowJobs(true);
+    setShowCompanies(false);
+    setShowApplication(false);
+    setShowAbout(false);
+    setShowLogin(false);
+    setShowRegister(false);
+    setShowMyApplications(false);
+    setShowContact(false);
+
+    setSelectedJob(null);
+  };
 
   return (
     <>
@@ -251,85 +190,78 @@ function App() {
         onHome={handleHome}
         onJobs={handleJobs}
         onCompanies={handleCompanies}
+        onAbout={handleAbout}
         onLogin={handleLogin}
         onRegister={handleRegister}
-        onAbout={handleAbout}
-        onMyApplications={handleMyApplications}
-        user={loggedInUser}
-        onLogout={handleLogout}
+        onContact={handleContact}
       />
 
+      {/* About */}
+      {showAbout && <About />}
 
-      {showMyApplications ? (
-
-        <MyApplications
-          user={loggedInUser}
-          onViewJob={handleViewAppliedJob}
-        />
-
-      ) : showAbout ? (
-
-        <About />
-
-      ) : showRegister ? (
-
-        <Register
-          onLogin={handleLogin}
-        />
-
-      ) : showLogin ? (
-
+      {/* Login */}
+      {showLogin && (
         <Login
           onRegister={handleRegister}
           onLoginSuccess={handleLoginSuccess}
         />
+      )}
 
-      ) : showApplication ? (
+      {/* Register */}
+      {showRegister && <Register />}
 
-        <Application
-          job={selectedJob}
-          user={loggedInUser}
-          onBack={() => {
-            setShowApplication(false);
-            scrollToTop();
-          }}
-        />
+      {/* Contact */}
+      {showContact && <Contact />}
 
-      ) : selectedJob ? (
+      {/* Application */}
+      {showApplication && selectedJob && (
+        <Application job={selectedJob} />
+      )}
 
+      {/* Job Details */}
+      {selectedJob && !showApplication && (
         <JobDetails
           job={selectedJob}
-          onBack={handleHome}
           onApply={handleApply}
         />
+      )}
 
-      ) : showCompanies ? (
-
+      {/* Companies */}
+      {showCompanies && (
         <Companies
           onViewCompanyJobs={handleViewCompanyJobs}
         />
-
-      ) : showJobs ? (
-
-        <Jobs
-          onViewJob={setSelectedJob}
-          selectedCompany={selectedCompany}
-          onBackToCompanies={handleBackToCompanies}
-        />
-
-      ) : (
-
-        <Home
-          onViewJob={setSelectedJob}
-        />
-
       )}
 
+      {/* Jobs */}
+      {showJobs && (
+        <Jobs
+          selectedCompany={selectedCompany}
+          onViewJob={handleViewJob}
+        />
+      )}
+
+      {/* My Applications */}
+      {showMyApplications && currentUser && (
+        <MyApplications userId={currentUser.user_id} />
+      )}
+
+      {/* Home */}
+      {!showAbout &&
+        !showLogin &&
+        !showRegister &&
+        !showContact &&
+        !showApplication &&
+        !selectedJob &&
+        !showCompanies &&
+        !showJobs &&
+        !showMyApplications && (
+          <Home onViewJob={handleViewJob} />
+        )}
 
       <Footer />
     </>
   );
 }
-
 
 export default App;
