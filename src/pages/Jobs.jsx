@@ -1,4 +1,4 @@
-import JobCard from "../components/Jobcard.jsx";
+import JobCard from "../components/JobCard.jsx";
 
 function Jobs({ onViewJob, selectedCompany, onBackToCompanies }) {
   const jobs = [
